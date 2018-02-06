@@ -72,13 +72,13 @@ theme
 
 * Maintaining only
   * takus/fluent-plugin-ec2-metadata
+  * y-ken/fluent-plugin-anonymizer
 
 # Add project collaborator and gem owner
 
 * Still exists in original place, but maintaining ourselves
   * uken/fluent-plugin-elasticsearch
   * y-ken/fluent-plugin-geoip
-  * y-ken/fluent-plugin-anonymizer
 
 # Create cooperative working organization
 
