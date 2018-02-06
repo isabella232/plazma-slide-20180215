@@ -1,0 +1,7 @@
+.DS_Store
+/.tmp/
+/pkg/
+/pdf/
+/vendor/
+/.bundle/
+Gemfile.lock
