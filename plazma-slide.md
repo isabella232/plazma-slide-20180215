@@ -7,7 +7,7 @@ institution
 :   ClearCode Inc.
 
 theme
-:   clear-blue
+:   clear-code
 
 # Summary
 
