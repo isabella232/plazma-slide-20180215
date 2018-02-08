@@ -86,7 +86,7 @@ theme
 * Cooperative working organization
   * Take over outdated fluentd plugin project
   * New plugins which will be widely used
-     * fluent-plugin-concat
+     * c.f. fluent-plugin-concat
   * And some collaborations
 
 # Powered By
