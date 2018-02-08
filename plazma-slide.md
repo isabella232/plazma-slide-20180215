@@ -68,13 +68,13 @@ theme
   * to add gem owner
 * Create cooperative working organization
 
-# Add project collaborator
+# Become project collaborator
 
 * Maintaining only
   * takus/fluent-plugin-ec2-metadata
   * y-ken/fluent-plugin-anonymizer
 
-# Add project collaborator and gem owner
+# Become project collaborator and gem owner
 
 * Still exists in original place, but maintaining ourselves
   * uken/fluent-plugin-elasticsearch
