@@ -89,6 +89,22 @@ theme
      * c.f. fluent-plugin-concat
   * And some collaborations
 
+# Create cooperative working organization
+
+* fluent-plugins-nursery
+
+# fluent-plugins-nursery
+
+* This organization is for Fluentd plugins that are not maintained by original authors.
+* This organization aims to provide a sustainable maintenance system for Fluentd community.
+
+# fluent-plugins-nursery
+
+* Almost plugins are taken over maintaining from original author.
+  * fluent-plugin-map
+  * fluent-plugin-redis
+  * fluent-plugin-irc etc.
+
 # Powered By
 
 * Rabbit shocker
