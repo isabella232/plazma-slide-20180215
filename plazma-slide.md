@@ -105,6 +105,10 @@ theme
   * fluent-plugin-redis
   * fluent-plugin-irc etc.
 
+# fluent-plugins-nursery
+
+* Let's maintain fluentd plugins by community!
+
 # Powered By
 
 * Rabbit shocker
