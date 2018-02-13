@@ -17,7 +17,7 @@ theme
 # kafka-connect-fluentd?
 
 * Fluentd Forward Protocol Server implemented with Kafka Connect API
-  * Use influent for server implementation
+  * Use [influent](https://github.com/okumin/influent) for server implementation
     * Partial SSL/TLS suppport
   * Aim to replace out_kafka, out_kafka_buffered, out_kafka2 in fluent-plugin-kafka
   * [fluent/kakfa-connect-fluentd](https://github.com/fluent/kafka-connect-fluentd)
