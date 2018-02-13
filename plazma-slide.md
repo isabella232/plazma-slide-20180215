@@ -16,50 +16,49 @@ theme
 
 # kafka-connect-fluentd?
 
-* Kafka Connect API を使って実装した Fluentd Forward Protocol を話すサーバー
-  * サーバー部分の実装には influent を使用
-    * SSL/TLSは部分的にサポート
-  * fluent-plugin-kafka の out_kafka, out_kafka_buffered, out_kafka2 の置き換えを目指している
+* Fluentd Forward Protocol Server implemented with Kafka Connect API
+  * Use influent for server implementation
+    * Partial SSL/TLS suppport
+  * Aim to replace out_kafka, out_kafka_buffered, out_kafka2 in fluent-plugin-kafka
   * [fluent/kakfa-connect-fluentd](https://github.com/fluent/kafka-connect-fluentd)
 
 # Kafka Connect?
 
-* Kafka Producer/Consumer を汎用化して実装しやすくしたもの
+* It is genralized from Kafka Producer/Consumer and easy to implement
   * Kafka Producer <-> Kafka Connector Source
-    * 今回はこっちについて話します
+    * I'll talk this implementation.
   * Kafka Consumer <-> Kafka Connector Sink
-    * こちらの実装もあります
+    * This implementation also exists.
 
 # VS. fluent-plugin-kafka
 
-* ベンチマークしたい
-  * コマンドラインで簡単に使えるベンチマークツールがない
-  * dummer + in_tail はあるけど、セットアップに手間がかかる
-    * 強いサーバーに負荷をかけるのが大変
+* Want to run benchmark tests
+  * There is no tool which is easy to use from command line.
+  * dummer + in_tail exist, but it is hard to apply load
 
 # VS. fluent-plugin-kafka
 
-* ベンチマークツール作った
+* Crated benchmark test tool
   * [okkez/fluent-benchmark-client](https://github.com/okkez/fluent-benchmark-client)
-    * Kotlin で実装
-    * ログ送信部分は [komamitsu/fluency](https://github.com/komamitsu/fluency)
-      * SSL/TLS は未サポート
+    * Implemented by Kotlin language
+    * Sending log relies on [komamitsu/fluency](https://github.com/komamitsu/fluency)
+      * SSL/TLS is not supported for now
 
 # VS. fluent-plugin-kafka
 
-* 再現性のあるベンチマークを簡単にしたい
-  * Terraform + Ansible で環境構築
-    * [fluentd-benchmark](https://github.com/okkez/fluentd-benchmark/tree/add-benchmark-using-gcp) にブランチを切って開発中
-       * もう少し整理が必要
+* Make benchmark test reproducible
+  * Built with Terraform + Ansible
+    * Developing specific branch on [fluentd-benchmark](https://github.com/okkez/fluentd-benchmark/tree/add-benchmark-using-gcp)
+       * Need tidying up implementation
 
 # VS. fluent-plugin-kafka
 
-* 同じ基準で性能を比較したい
+* Compare performance with same basis
   * [okkez/kafka-fluent-metrics-reporter](https://github.com/okkez/kafka-fluent-metrics-reporter)
-    * Kafka の metrics を Fluentd に送信する Kafka のプラグイン
-    * Fluentd で加工してから influxdb に投げて grafana で可視化
-  * pidstat の結果をパースして Fluentd に投げるスクリプト書いた
-    * CPU使用率とメモリー使用量を測定するため
+    * Kafka plugin which sends Kafka metrics into Fluentd
+    * Process with Fluentd, send to influxdb, and visualize with grafana
+  * Write a script which parses result of pidstat and sends into Fluentd
+    * To meature CPU and memory usage
 
 # VS. fluent-plugin-kafka
 
