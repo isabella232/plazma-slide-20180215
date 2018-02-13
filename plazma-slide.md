@@ -18,13 +18,13 @@ theme
 
 * Fluentd Forward Protocol Server implemented with Kafka Connect API
   * Use [influent](https://github.com/okumin/influent) for server implementation
-    * Partial SSL/TLS suppport
+    * Partial SSL/TLS support
   * Aim to replace out_kafka, out_kafka_buffered, out_kafka2 in fluent-plugin-kafka
   * [fluent/kakfa-connect-fluentd](https://github.com/fluent/kafka-connect-fluentd)
 
 # Kafka Connect?
 
-* It is genralized from Kafka Producer/Consumer and easy to implement
+* It is generalized from Kafka Producer/Consumer and easy to implement Kafka Connector Source/Sink
   * Kafka Producer <-> Kafka Connector Source
     * I'll talk about this implementation.
   * Kafka Consumer <-> Kafka Connector Sink
@@ -34,7 +34,7 @@ theme
 
 * Want to run benchmark tests
   * There is no tool which is easy to use from command line.
-  * dummer + in_tail exist, but it is hard to apply high load.
+  * Dummer + in_tail exist, but it is hard to apply high load.
 
 # VS. fluent-plugin-kafka
 
@@ -46,10 +46,10 @@ theme
 
 # VS. fluent-plugin-kafka
 
-* Make benchmark test reproducible
+* Make benchmark tests to be reproducible
   * Built with Terraform + Ansible
     * Developing specific branch on [fluentd-benchmark](https://github.com/okkez/fluentd-benchmark/tree/add-benchmark-using-gcp)
-       * Need tidying up implementation
+       * Need to tidy up implementation
 
 # VS. fluent-plugin-kafka
 
@@ -58,7 +58,7 @@ theme
     * Kafka plugin which sends Kafka metrics into Fluentd
     * Process with Fluentd, send to influxdb, and visualize with grafana
   * Write a script which parses result of pidstat and sends into Fluentd
-    * To meature CPU and memory usage
+    * To measure CPU and memory usage
 
 # VS. fluent-plugin-kafka
 
@@ -123,7 +123,7 @@ theme
 * Ask plugin authors
   * to add project collaborator
   * to add gem owner
-* Create cooperative working organization
+* Create a cooperative working organization
 
 # Become project collaborator
 
