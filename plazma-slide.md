@@ -26,7 +26,7 @@ theme
 
 * It is genralized from Kafka Producer/Consumer and easy to implement
   * Kafka Producer <-> Kafka Connector Source
-    * I'll talk this implementation.
+    * I'll talk about this implementation.
   * Kafka Consumer <-> Kafka Connector Sink
     * This implementation also exists.
 
@@ -34,7 +34,7 @@ theme
 
 * Want to run benchmark tests
   * There is no tool which is easy to use from command line.
-  * dummer + in_tail exist, but it is hard to apply load
+  * dummer + in_tail exist, but it is hard to apply high load.
 
 # VS. fluent-plugin-kafka
 
@@ -42,7 +42,7 @@ theme
   * [okkez/fluent-benchmark-client](https://github.com/okkez/fluent-benchmark-client)
     * Implemented by Kotlin language
     * Sending log relies on [komamitsu/fluency](https://github.com/komamitsu/fluency)
-      * SSL/TLS is not supported for now
+      * SSL/TLS is not supported for now.
 
 # VS. fluent-plugin-kafka
 
