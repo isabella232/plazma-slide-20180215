@@ -110,6 +110,11 @@ theme
 * Report issues
 * Send PRs
 
+### Maintaining Plugins
+
+* 130+ PRs still opened...
+* 1400+ PRs merged
+
 # Maintaining Plugins
 
 * But, sometimes plugin authors are busy....
