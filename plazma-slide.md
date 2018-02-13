@@ -152,8 +152,8 @@ theme
 
 # fluent-plugins-nursery
 
-* This organization is for Fluentd plugins that are not maintained by original authors.
-* This organization aims to provide a sustainable maintenance system for Fluentd community.
+* For Fluentd plugins that are not maintained by original authors
+* Aim to provide a sustainable maintenance system for Fluentd community
 
 # fluent-plugins-nursery
 
