@@ -110,7 +110,7 @@ theme
 * Report issues
 * Send PRs
 
-### Maintaining Plugins
+# Maintaining Plugins
 
 * 130+ PRs still opened...
 * 1400+ PRs merged
