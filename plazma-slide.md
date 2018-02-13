@@ -79,7 +79,7 @@ theme
 * Still exists in original place, but maintaining ourselves
   * uken/fluent-plugin-elasticsearch
   * y-ken/fluent-plugin-geoip
-  * y-ken/fluent-plugin-rewrite-tag-filter
+  * fluent/fluent-plugin-rewrite-tag-filter
 
 # Create cooperative working organization
 
