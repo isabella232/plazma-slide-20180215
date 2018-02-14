@@ -110,7 +110,7 @@
 
 (('note:GCP n1-standard-2 (vCPUx2, memory 7.5GB)'))
 
-= (('tag:small:VS. fluent-plugin-kafka\\nCPU usage'))
+= (('tag:small:out_kafka\\nCPU usage'))\n(('tag:x-small:10000 events/sec'))
 
   # image
   # src = images/out_kafka-max_buffer_size=1000-10k.png
@@ -118,7 +118,7 @@
 
 (('note:out_kafka CPU usage is 40-60%'))
 
-= (('tag:small:VS. fluent-plugin-kafka\\nCPU usage'))
+= (('tag:small:kafka-connect-fluentd\\nCPU usage'))\n(('tag:x-small:10000 events/sec'))
 
   # image
   # src = images/kafka-connect-fluentd-worker1-10k.png
@@ -126,7 +126,7 @@
 
 (('note:kafka-connect-fluentd CPU usage is less than 20%'))
 
-= (('tag:small:VS. fluent-plugin-kafka\\nevents/sec'))
+= (('tag:small:out_kafka_buffered\\n30000 events/sec'))
 
   # image
   # src = images/out_kafka_buffered-kafka_agg_max_bytes=4k-30k.png
@@ -134,7 +134,7 @@
 
 (('note:out_kafka_buffered cannot process 30k events/sec'))
 
-= (('tag:small:VS. fluent-plugin-kafka\\nevents/sec'))
+= (('tag:small:kafka-connect-fluentd\\n50000 events/sec'))
 
   # image
   # src = images/kafka-connect-fluentd-worker1-50k.png
