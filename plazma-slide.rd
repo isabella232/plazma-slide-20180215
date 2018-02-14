@@ -60,12 +60,13 @@
   # relative_height = 100
 
 
-= The difference of fluent-plugin-kafka
+= Difference
 
-  * kafka-connect-fluentd is implemented with Kafka connect framework on Java.
-    * Run on Kafka side
-  * fluent-plugin-kafka is implemented with Ruby.
-    * Run on Fluentd side
+  # RT
+
+  \n,(('tag:x-small:kafka-connect-fluentd')),(('tag:x-small:fluent-plugin-kafka'))
+  language, Java, Ruby
+  Run on, (('tag:small:Kafka side')),(('tag:x-small:Fluentd side'))
 
 = Requirements of benchmarking
 
