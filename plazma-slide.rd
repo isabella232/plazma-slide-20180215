@@ -54,7 +54,7 @@
 
   # image
   # src = images/Fluentd-with-kafka-connect-fluentd.001.jpeg
-  # relative_hight = 80
+  # relative_height = 100
 
 = fluent-plugin-kafka
 
@@ -62,7 +62,7 @@
 
   # image
   # src = images/Fluentd-to-kafka-with-fluent-plugin-kafka.002.jpeg
-  # relative_hight = 80
+  # relative_height = 100
 
 
 = fluent-plugin-kafka との違い
