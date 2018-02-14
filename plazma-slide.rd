@@ -85,12 +85,12 @@
     * Developing specific branch on ((<fluentd-benchmark|URL:https://github.com/okkez/fluentd-benchmark/tree/add-benchmark-using-gcp>))
        * (('note:Need to tidy up implementation'))
 
-= Compare performance with same basis
+= (('tag:small:Compare performance\\nwith same basis'))
 
   * ((<kafka-fluent-metrics-reporter|URL:https://github.com/okkez/kafka-fluent-metrics-reporter>))
-    * Kafka plugin which sends Kafka metrics into Fluentd
-  * Write a script which parses result of pidstat and sends into Fluentd
-    * To measure CPU and memory usage
+    * (('tag:x-small:Kafka plugin which sends Kafka metrics into Fluentd'))
+  * (('tag:small:Write a script which parses result of pidstat and sends into Fluentd'))
+    * (('tag:x-small:To measure CPU and memory usage'))
 
 = VS. fluent-plugin-kafka
 
