@@ -33,13 +33,8 @@
 
   # blockquote
   # title = Kafka Connect
-  Kafka Connect is a framework included in Apache Kafka that integrates Kafka with other systems.
-
-= Kafka Connect?
-
-  # blockquote
-  # title = Kafka Connect
-  Its purpose is to make it easy to add new systems to your scalable and secure stream data pipelines.
+  (('tag:x-small:Kafka Connect is a framework included in Apache Kafka that integrates Kafka with other systems.'))
+  (('tag:x-small:Its purpose is to make it easy to add new systems to your scalable and secure stream data pipelines.'))
 
 = Kafka Connect?
 
