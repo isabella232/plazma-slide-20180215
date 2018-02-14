@@ -63,7 +63,9 @@
 = The difference of fluent-plugin-kafka
 
   * kafka-connect-fluentd is implemented with Kafka connect framework on Java.
+    * Run on Kafka side
   * fluent-plugin-kafka is implemented with Ruby.
+    * Run on Fluentd side
 
 = Requirements of benchmarking
 
