@@ -68,17 +68,17 @@
   language, Java, Ruby
   Run on, (('tag:small:Kafka side')),(('tag:x-small:Fluentd side'))
 
-= Requirements of benchmarking
+= (('tag:small:Requirements of benchmarking'))
 
-  * Easy to use benchmark test tool
-  * Make benchmark tests to be reproducible
-  * Compare performance with same basis
-    * Easy to confirm benchmark results
+  * (('tag:small:Easy to use benchmark test tool'))
+  * (('tag:small:Reproducible'))
+  * (('tag:small:Compare performance with same basis'))
+    * (('note:Easy to confirm results'))
 
-= Easy to use benchmarking test tool
+= (('tag:small:Easy to use benchmarking test tool'))
 
   * There is no tool which is easy to use from command line.
-  * Dummer + in_tail exist, but it is hard to apply high load.
+    * (('note:Dummer + in_tail exist, but it is hard to apply high load.'))
 
 = Crated benchmark test tool
 
