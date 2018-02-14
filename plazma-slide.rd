@@ -101,10 +101,53 @@
   * (('tag:small:Write a script which parses result of pidstat and sends into Fluentd'))
     * (('tag:x-small:To measure CPU and memory usage'))
 
-= VS. fluent-plugin-kafka
+= ベンチマーク環境
 
-  * (ベンチマーク結果の説明)
-  * (全部は入れなくていい)
+(絵を入れたい)
+
+* GCP
+  * n1-standard-2
+    * vCPU x 2
+    * memory 7.5GB
+
+= (('tag:small:VS. fluent-plugin-kafka\\nCPU usage'))
+
+  # image
+  # src = images/out_kafka-max_buffer_size=1000-10k.png
+  # relative_height = 80
+
+(('note:out_kafka CPU usage is 40-60%'))
+
+= (('tag:small:VS. fluent-plugin-kafka\\nCPU usage'))
+
+  # image
+  # src = images/kafka-connect-fluentd-worker1-10k.png
+  # relative_height = 80
+
+(('note:kafka-connect-fluentd CPU usage is less than 20%'))
+
+= (('tag:small:VS. fluent-plugin-kafka\\nevents/sec'))
+
+  # image
+  # src = images/out_kafka_buffered-kafka_agg_max_bytes=4k-30k.png
+  # relative_height = 80
+
+(('note:out_kafka_buffered cannot process 30k events/sec'))
+
+= (('tag:small:VS. fluent-plugin-kafka\\nevents/sec'))
+
+  # image
+  # src = images/kafka-connect-fluentd-worker1-50k.png
+  # relative_height = 80
+
+(('note:kafka-connect-fluentd can process about 50k events/sec'))
+
+= ベンチマークのまとめ
+
+  * kafka-connect-fluentd は 5万 events/sec 処理できた
+  * fluent-plugin-kafka の output plugin は 1万 events/sec は処理できた
+    * 3万 events/sec は処理できなかった
+
 
 = Fluentd Community
 
