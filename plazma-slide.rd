@@ -13,6 +13,9 @@
 : theme
   .
 
+: allotted-time
+  25m
+
 = Summary
 
   * kafka-connect-fluentd and its benckmarking result
@@ -198,6 +201,7 @@
 
   * 130+ PRs still opened...
   * 1400+ PRs merged
+    * in 2.5 years
 
 = Maintaining Plugins
 
