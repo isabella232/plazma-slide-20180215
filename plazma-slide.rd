@@ -81,7 +81,7 @@
 
 = Make benchmark tests to be reproducible
 
-  * Built with Terraform + Ansible
+  * (('tag:small:Built with Terraform + Ansible'))
     * Developing specific branch on ((<fluentd-benchmark|URL:https://github.com/okkez/fluentd-benchmark/tree/add-benchmark-using-gcp>))
        * (('note:Need to tidy up implementation'))
 
