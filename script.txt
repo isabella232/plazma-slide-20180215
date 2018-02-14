@@ -1,0 +1,360 @@
+= Cooperative works \nfor \nFluentd Community
+
+: author
+  Kenji Okimoto\n
+  Hiroshi Hatake
+
+: institution
+  ClearCode Inc.
+
+: date
+  2018-02-15
+
+: theme
+  .
+
+: allotted-time
+  25m
+
+こんにちは。今日は大塚にあるクリアコードという会社から来ました。
+沖元です。畑ケです。
+よろしくお願いします。
+
+= Summary
+
+今日話す内容は2つあります。
+1つ目は、kafka-connect-fluentd というものを作ったので、その紹介をします。
+2つ目は、Fluentdのプラグインをメンテナンスすることについて話します。
+
+  * kafka-connect-fluentd and its benckmarking result
+  * maintaining fluentd plugins
+
+= kafka-connect-fluentd?
+
+kafka-connect-fluentd とは、Fluentd Forward Protocol を話すサーバーで、Kafka Connect API を使って
+Kafka にデータを書き込むことができる Kafka のプラグインです。
+
+  * Fluentd Forward Protocol Server implemented with Kafka Connect API
+    * ((<kakfa-connect-fluentd|URL:https://github.com/fluent/kafka-connect-fluentd>))
+
+= kafka-connect-fluentd?
+
+Fluentd Forward Protocol を話すサーバー部分の実装には influent という Java で実装されたライブラリーを使用しています。
+  * influent は部分的に SSL/TLS をサポートしています。
+kafka-connect-fluentd は fluent-plugin-kafka の output plugin の替わりに使うことを目指しています。
+
+  * Use ((<influent|URL:https://github.com/okumin/influent>)) for server implementation
+    * Partial SSL/TLS support
+  * Aim to replace output plugins in ((<fluent-plugin-kafka|URL:https://github.com/fluent/fluent-plugin-kafka>))
+
+= Kafka Connect?
+
+さきほどから、Kafka Connect という単語を何回か言っていますが、Kafka Connect とはなんでしょう。
+公式サイトの説明から、引用します。
+Kafka Connect とは、Kafkaと他のシステムを統合するためのフレームワークで、Apache Kafka に含まれています。
+新たなシステムを簡単に追加することができるようになることを目的としています。
+
+  # blockquote
+  # title = Kafka Connect
+  (('tag:x-small:Kafka Connect is a framework included in Apache Kafka that integrates Kafka with other systems.'))
+  (('tag:x-small:Its purpose is to make it easy to add new systems to your scalable and secure stream data pipelines.'))
+
+= Kafka Connect?
+
+Kafka Connect は Kafka Producer/Consumer を汎用化して、データのやりとりの部分だけを実装すれば、
+他システムから Kafka にデータを流したり、Kafka から取り出したデータを他システムに流したりできます。
+
+Kafka Connector Source は Kafka Producer に対応しています。
+今日は、こちらについて話をします。
+Kafka Connector Sink は Kafka Consumer に対応しています。
+実装はありますが、今日は話しません。
+
+  * Kafka Connector Source ->\n
+    Kafka Producer
+    * (('tag:x-small:I'll talk about this implementation.'))
+  * Kafka Connector Sink ->\nKafka Consumer
+    * (('tag:x-small:This implementation also exists.'))
+
+= fluent-plugin-kafka
+
+fluent-plugin-kafka は図のように、あるデータソースからFluentdにデータが流れてきて、
+そのデータをruby-kafkaを使ってKafkaに流します。
+
+(('tag:xx-small'))
+
+  # image
+  # src = images/Fluentd-to-kafka-with-fluent-plugin-kafka.002.jpeg
+  # relative_height = 100
+
+
+= kafka-connect-fluentd
+
+kafka-connect-fluentd は図のように、あるデータソースからFluentdにデータが流れてきて、
+Fluentdがそのデータを out_forward で kafka-connect-fluentd に流します。
+そして、kafka-connect-fluentdが Kafka にデータを流します。
+
+(('tag:xx-small'))
+
+  # image
+  # src = images/Fluentd-with-kafka-connect-fluentd.001.jpeg
+  # relative_height = 100
+
+= Difference
+
+kafka-connect-fluentd と fluent-plugin-kafka の大きな違いは2つあります。
+1つ目は、実装言語の違いです。
+kafka-connect-fluentd は Kafka Connect API を使って Java で実装されています。
+fluent-plugin-kafka は ruby-kafka gem を使って Ruby で実装されています。
+
+2つ目は、動いている場所が違います。
+kafka-connect-fluentd は Kafka 側で動いていますが、Kafka 本体とは別プロセスで動きます。
+fluent-plugin-kafka は Fluentd 側で動作し、Fluentdと同じプロセスで動きます。
+
+  # RT
+
+  \n,(('tag:x-small:kafka-connect-fluentd')),(('tag:x-small:fluent-plugin-kafka'))
+  language, Java, Ruby
+  Run on, (('tag:small:Kafka side')),(('tag:x-small:Fluentd side'))
+
+= (('tag:small:Requirements of benchmarking'))
+
+kafka-connect-fluentd が fluent-plugin-kafka の代替になるには、機能はもちろん必要ですが、
+性能も必要なので、まずは必要な機能を実装してベンチマークを取ることにしました。
+
+ベンチマークに最低限必要なものは、3つあると考えています。
+1つ目は、簡単に実行できるベンチマークツール。
+2つ目は、再現可能であること。
+3つ目は、明確な基準で比較できること。
+
+  * (('tag:small:Easy to use benchmark test tool'))
+  * (('tag:small:Reproducible'))
+  * (('tag:small:Compare performance with same basis'))
+    * (('note:Easy to confirm results'))
+
+= (('tag:small:Easy to use benchmarking test tool'))
+
+まず、ベンチマークツールですが Fluentd で使えるベンチマークツールとして、
+ちょうどいいものはありませんでした。
+
+dummer + in_tail がありますが、この組み合わせだと高い負荷をかけるため
+に複数のクライアントをセットアップする必要があるので、手間がかかり、自
+分の欲しいものではありませんでした。
+
+  * There is no tool which is easy to use from command line.
+    * (('note:Dummer + in_tail exist, but it is hard to apply high load.'))
+
+= Crated benchmark test tool
+
+そこで fluent-benchmark-client というコマンドラインツールを Kotlin で開発しました。
+ログ送信部分には、fluencyを使用しました。
+
+このツールは、例えば秒間1万イベントを5分間送る、ということができます。
+また、LTSVやJSONを読むことができるので、dummerで生成したデータを使うこともできます。
+
+  * ((<fluent-benchmark-client|URL:https://github.com/okkez/fluent-benchmark-client>))
+    * Implemented by Kotlin language
+    * Sending log relies on ((<fluency|URL:https://github.com/komamitsu/fluency>))
+      * (('note:SSL/TLS is not supported for now.'))
+
+= Reproducible
+
+ベンチマークを実行するための環境を簡単に作れるようにし、簡単にベンチマークを実行できるようにしました。
+Terraform + Ansible で環境構築を行うことでとても簡単に環境構築をできるようになりました。
+もう少し整理したら、upstreamにPRを出す予定です。
+
+  * (('tag:small:Built with Terraform + Ansible'))
+    * Developing specific branch on ((<fluentd-benchmark|URL:https://github.com/okkez/fluentd-benchmark/tree/add-benchmark-using-gcp>))
+       * (('note:Need to tidy up implementation'))
+
+= (('tag:small:Compare performance\\nwith same basis'))
+
+kafka-connect-fluentd も fluent-plugin-kafka も、最終的には Kafka にデータを書き込むので、
+同じ基準で比較するには、Kafka の metrics を使用するのがよいだろうと考えました。
+既存の Kafka metrics reporter でちょうどよいものがなかったので kafka-fluent-metrics-repoter というものを作りました。
+これは Kafka のプラグインで Kafka の metrics を Fluentd に送るものです。これも Kotlin で実装しています。
+
+kafka-fluent-metrics-repoter で送ったデータを Fluentd でフィルタリングして influxdb に保存し、 grafana で可視化して、
+ベンチマーク結果を確認できるようにしました。
+
+  * ((<kafka-fluent-metrics-reporter|URL:https://github.com/okkez/kafka-fluent-metrics-reporter>))
+    * (('tag:x-small:Kafka plugin which sends Kafka metrics into Fluentd'))
+  * (('tag:small:Write a script which parses result of pidstat and sends into Fluentd'))
+    * (('tag:x-small:To measure CPU and memory usage'))
+
+= (('tag:small:Benchmark environment'))
+
+ベンチマーク環境の説明をします。
+マシンは4台あって、全て GCP の n1-standard-2 (vCPUx2, mem 7.5GB) を使用しています。
+まず、fluent-plugin-kafka の場合、左の client から、ベンチマークツールで上の Fluentd にイベントを送ります。
+Fluentdは、そのイベントを fluent-plugin-kafka の output plugin を使って Kafka に送ります。
+FluentdのCPU使用率やメモリー使用量は、自作のスクリプトで別途 metrics サーバーに送ります。
+Kafkaのmetricsは Kafka から直接 metrics サーバーに送ります。
+
+kafka-connect-fluentd の場合は、左の client から下の Kafka にイベントを送ります。
+kafka-connect-fluentd は Kafka と同じサーバーにいます。
+metrics はfluent-plugin-kafka の場合と同じように送ります。
+
+なお、Fluentd は 1.0.2 を使っています。
+
+  # image
+  # src = images/structure.svg
+  # relative_height = 85
+
+(('note:GCP n1-standard-2 (vCPUx2, memory 7.5GB)'))
+
+= (('tag:small:out_kafka\\nCPU usage'))\n(('tag:x-small:10000 events/sec'))
+
+out_kafka に 1000 events/sec 流した場合のCPU使用率は40-60%くらいでした。
+
+  # image
+  # src = images/out_kafka-max_buffer_size=1000-10k.png
+  # relative_height = 80
+
+(('note:out_kafka CPU usage is 40-60%'))
+
+= (('tag:small:kafka-connect-fluentd\\nCPU usage'))\n(('tag:x-small:10000 events/sec'))
+
+kafka-connect-fluentd に 10000 events/sec 流した場合のCPU使用率は最初に少し山がありますが概ね20%以下でした。
+
+  # image
+  # src = images/kafka-connect-fluentd-worker1-10k.png
+  # relative_height = 80
+
+(('note:kafka-connect-fluentd CPU usage is less than 20%'))
+
+= (('tag:small:out_kafka_buffered\\n30000 events/sec'))
+
+out_kafka_buffered に 30000 events/sec を流した場合、CPU使用率は90%を越えましたが、送ったイベントを処理しきれていませんでした。
+Kafkaには、約20000 events/sec 送ることができていたので、out_kafka_buffered の限界はそのあたりだと言えるでしょう。
+
+  # image
+  # src = images/out_kafka_buffered-kafka_agg_max_bytes=4k-30k.png
+  # relative_height = 80
+
+(('note:out_kafka_buffered cannot process 30k events/sec'))
+
+= (('tag:small:kafka-connect-fluentd\\n50000 events/sec'))
+
+kafka-connect-fluentd に 50000 events/sec を流した場合、CPU使用率はかなり上がりましたが全てのイベントを処理することができています。
+kafka-connect-fluentd この環境だと 50000 events/sec を越えるとイベントを処理しきれなくなりました。
+
+  # image
+  # src = images/kafka-connect-fluentd-worker1-50k.png
+  # relative_height = 80
+
+(('note:kafka-connect-fluentd can process about 50k events/sec'))
+
+= Benchmark results
+
+kafka-connect-fluentd は 50000 events/sec 処理できました。
+fluent-plugin-kafka の output pluign たちは、20000 events/sec は処理できましたが、
+30000 events/sec は処理できませんでした。
+
+  * kafka-connect-fluentd can handle more 50,000 events/sec
+  * output plugin of fluent-plugin-kafka can handle 10,000 events/sec
+    * cannot handle 30,000 events/sec in this environment
+
+
+= Fluentd Community
+
+  * Fluentd community has...
+    * lots of plugins
+      * Over 700+ plugins
+
+= Fluentd Community
+
+  * Fluentd community has...
+    * lots of up-to-date plugins
+    * lots of outdated plugins
+
+= Fluentd Community
+
+  * Fluentd community has...
+    * lots of up-to-date plugins
+    * lots of ((*outdated*)) plugins
+
+= How does handle outdated plugins?
+
+  * Send PRs
+  * Report issues
+  * Become a maintainer
+
+= What means ((*outdated*))?
+
+  * out-of-date dependencies
+    * c.f. client libraries
+  * out-of-date class inheritance
+    * (('Fluent::Input')), (('Fluent::HttpInput')) etc.
+
+= What means ((*outdated*))?
+
+  * Using old API
+    * Gap between v0.12 and v1.0 API
+  * ((*Fluent::Engine.emit*)) directly
+  * Lack of requires etc.
+
+= Maintaining Plugins
+
+  * Normally, same as other rubygems
+
+= Maintaining Plugins
+
+  * Report issues
+  * Send PRs
+
+= Maintaining Plugins
+
+  * 130+ PRs still opened...
+  * 1400+ PRs merged
+    * in 2.5 years
+
+= Maintaining Plugins
+
+  * But, sometimes plugin authors are busy....
+
+= (('tag:small:Let\'s take over\\nFluentd plugins project'))
+
+  * Ask plugin authors
+    * to add project collaborator
+    * to add gem owner
+  * Create a cooperative working organization
+
+= Become project collaborator
+
+  * Maintaining only
+    * takus/fluent-plugin-ec2-metadata
+    * y-ken/fluent-plugin-anonymizer
+
+= (('tag:small:Become project collaborator and gem owner'))
+
+  * Still exists in original place, but maintaining ourselves
+    * (('tag:x-small:uken/fluent-plugin-elasticsearch'))
+    * (('tag:x-small:y-ken/fluent-plugin-geoip'))
+    * (('tag:x-small:fluent/fluent-plugin-rewrite-tag-filter'))
+
+= (('tag:small:Create cooperative working organization'))
+
+  * (('tag:x-small:Take over outdated fluentd plugin project'))
+  * (('tag:x-small:New plugins which will be widely used'))
+     * (('note:c.f. fluent-plugin-concat'))
+  * (('tag:x-small:And some collaborations'))
+
+= (('tag:small:Create cooperative working organization'))
+
+  * fluent-plugins-nursery
+
+= fluent-plugins-nursery
+
+  * (('tag:small:For Fluentd plugins that are not maintained by original authors'))
+  * (('tag:small:Aim to provide a sustainable maintenance system for Fluentd community'))
+
+= fluent-plugins-nursery
+
+  * Almost plugins are taken over maintaining from original author.
+    * fluent-plugin-map
+    * fluent-plugin-redis
+    * fluent-plugin-irc etc.
+
+= fluent-plugins-nursery
+
+  * Let's maintain fluentd plugins by community!
