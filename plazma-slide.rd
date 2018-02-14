@@ -79,7 +79,7 @@
     * Sending log relies on ((<fluency|URL:https://github.com/komamitsu/fluency>))
       * (('note:SSL/TLS is not supported for now.'))
 
-= Make benchmark tests to be reproducible
+= Reproducible
 
   * (('tag:small:Built with Terraform + Ansible'))
     * Developing specific branch on ((<fluentd-benchmark|URL:https://github.com/okkez/fluentd-benchmark/tree/add-benchmark-using-gcp>))
@@ -89,7 +89,6 @@
 
   * ((<kafka-fluent-metrics-reporter|URL:https://github.com/okkez/kafka-fluent-metrics-reporter>))
     * Kafka plugin which sends Kafka metrics into Fluentd
-    * Process with Fluentd, send to influxdb, and visualize with grafana
   * Write a script which parses result of pidstat and sends into Fluentd
     * To measure CPU and memory usage
 
@@ -114,7 +113,7 @@
 
   * Fluentd community has...
     * lots of up-to-date plugins
-    * lots of _outdated_ plugins
+    * lots of ((*outdated*)) plugins
 
 = How does handle outdated plugins?
 
@@ -122,13 +121,15 @@
   * Report issues
   * Become a maintainer
 
-= What means _outdated_?
+= What means ((*outdated*))?
 
   * out-of-date dependencies
     * c.f. client libraries
   * out-of-date class inheritance
-    * `Fluent::Input`
-    * `Fluent::HttpInput` etc.
+    * (('Fluent::Input')), (('Fluent::HttpInput')) etc.
+
+= What means ((*outdated*))?
+
   * Using old API
     * Gap between v0.12 and v1.0 API
 
@@ -150,7 +151,7 @@
 
   * But, sometimes plugin authors are busy....
 
-= Let's take over Fluentd plugins project
+= (('tag:small:Let\'s take over\\nFluentd plugins project'))
 
   * Ask plugin authors
     * to add project collaborator
@@ -163,29 +164,28 @@
     * takus/fluent-plugin-ec2-metadata
     * y-ken/fluent-plugin-anonymizer
 
-= Become project collaborator and gem owner
+= (('tag:small:Become project collaborator and gem owner'))
 
   * Still exists in original place, but maintaining ourselves
-    * uken/fluent-plugin-elasticsearch
-    * y-ken/fluent-plugin-geoip
-    * fluent/fluent-plugin-rewrite-tag-filter
+    * (('tag:x-small:uken/fluent-plugin-elasticsearch'))
+    * (('tag:x-small:y-ken/fluent-plugin-geoip'))
+    * (('tag:x-small:fluent/fluent-plugin-rewrite-tag-filter'))
 
-= Create cooperative working organization
+= (('tag:small:Create cooperative working organization'))
 
-  * Cooperative working organization
-    * Take over outdated fluentd plugin project
-    * New plugins which will be widely used
-       * c.f. fluent-plugin-concat
-    * And some collaborations
+  * (('tag:x-small:Take over outdated fluentd plugin project'))
+  * (('tag:x-small:New plugins which will be widely used'))
+     * (('note:c.f. fluent-plugin-concat'))
+  * (('tag:x-small:And some collaborations'))
 
-= Create cooperative working organization
+= (('tag:small:Create cooperative working organization'))
 
   * fluent-plugins-nursery
 
 = fluent-plugins-nursery
 
-  * For Fluentd plugins that are not maintained by original authors
-  * Aim to provide a sustainable maintenance system for Fluentd community
+  * (('tag:small:For Fluentd plugins that are not maintained by original authors'))
+  * (('tag:small:Aim to provide a sustainable maintenance system for Fluentd community'))
 
 = fluent-plugins-nursery
 
