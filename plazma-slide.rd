@@ -69,14 +69,14 @@
 
   * ... TODO
 
-= ベンチマークに必要なもの
+= Requirements of benchmarking
 
-  * 使いやすいベンチマークツール
+  * Easy to use benchmark test tool
   * Make benchmark tests to be reproducible
   * Compare performance with same basis
-    * 結果を確認しやすいこと
+    * Easy to confirm benchmark results
 
-= 使いやすいベンチマークツール
+= Easy to use benchmarking test tool
 
   * There is no tool which is easy to use from command line.
   * Dummer + in_tail exist, but it is hard to apply high load.
