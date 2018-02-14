@@ -17,54 +17,75 @@ theme
 # kafka-connect-fluentd?
 
 * Fluentd Forward Protocol Server implemented with Kafka Connect API
-  * Use [influent](https://github.com/okumin/influent) for server implementation
-    * Partial SSL/TLS support
-  * Aim to replace out_kafka, out_kafka_buffered, out_kafka2 in fluent-plugin-kafka
   * [fluent/kakfa-connect-fluentd](https://github.com/fluent/kafka-connect-fluentd)
+
+# kafka-connect-fluentd?
+
+* Use [influent](https://github.com/okumin/influent) for server implementation
+  * Partial SSL/TLS support
+* Aim to replace output plugins in fluent-plugin-kafka
 
 # Kafka Connect?
 
-* It is generalized from Kafka Producer/Consumer and easy to implement Kafka Connector Source/Sink
-  * Kafka Producer <-> Kafka Connector Source
-    * I'll talk about this implementation.
-  * Kafka Consumer <-> Kafka Connector Sink
-    * This implementation also exists.
+> Kafka Connect is a framework included in Apache Kafka that integrates Kafka with other systems.
+> Its purpose is to make it easy to add new systems to your scalable and secure stream data pipelines.
 
-# VS. fluent-plugin-kafka
+# Kafka Connect?
 
-* Want to run benchmark tests
-  * There is no tool which is easy to use from command line.
-  * Dummer + in_tail exist, but it is hard to apply high load.
+* Kafka Producer <-> Kafka Connector Source
+  * I'll talk about this implementation.
+* Kafka Consumer <-> Kafka Connector Sink
+  * This implementation also exists.
 
-# VS. fluent-plugin-kafka
+# fluent-plugin-kafka との違い
 
-* Crated benchmark test tool
-  * [okkez/fluent-benchmark-client](https://github.com/okkez/fluent-benchmark-client)
-    * Implemented by Kotlin language
-    * Sending log relies on [komamitsu/fluency](https://github.com/komamitsu/fluency)
-      * SSL/TLS is not supported for now.
+(ここに図を入れたい fluent-plugin-kafka + kafka)
 
-# VS. fluent-plugin-kafka
+# fluent-plugin-kafka との違い
 
+(ここに図を入れたい fluentd + kafka-connect + kafka)
+
+# fluent-plugin-kafka との違い
+
+* ... TODO
+
+# ベンチマークに必要なもの
+
+* 使いやすいベンチマークツール
 * Make benchmark tests to be reproducible
-  * Built with Terraform + Ansible
-    * Developing specific branch on [fluentd-benchmark](https://github.com/okkez/fluentd-benchmark/tree/add-benchmark-using-gcp)
-       * Need to tidy up implementation
-
-# VS. fluent-plugin-kafka
-
 * Compare performance with same basis
-  * [okkez/kafka-fluent-metrics-reporter](https://github.com/okkez/kafka-fluent-metrics-reporter)
-    * Kafka plugin which sends Kafka metrics into Fluentd
-    * Process with Fluentd, send to influxdb, and visualize with grafana
-  * Write a script which parses result of pidstat and sends into Fluentd
-    * To measure CPU and memory usage
+  * 結果を確認しやすいこと
+
+# 使いやすいベンチマークツール
+
+* There is no tool which is easy to use from command line.
+* Dummer + in_tail exist, but it is hard to apply high load.
+
+# Crated benchmark test tool
+
+* [okkez/fluent-benchmark-client](https://github.com/okkez/fluent-benchmark-client)
+  * Implemented by Kotlin language
+  * Sending log relies on [komamitsu/fluency](https://github.com/komamitsu/fluency)
+    * SSL/TLS is not supported for now.
+
+# Make benchmark tests to be reproducible
+
+* Built with Terraform + Ansible
+  * Developing specific branch on [fluentd-benchmark](https://github.com/okkez/fluentd-benchmark/tree/add-benchmark-using-gcp)
+     * Need to tidy up implementation
+
+# Compare performance with same basis
+
+* [okkez/kafka-fluent-metrics-reporter](https://github.com/okkez/kafka-fluent-metrics-reporter)
+  * Kafka plugin which sends Kafka metrics into Fluentd
+  * Process with Fluentd, send to influxdb, and visualize with grafana
+* Write a script which parses result of pidstat and sends into Fluentd
+  * To measure CPU and memory usage
 
 # VS. fluent-plugin-kafka
 
 * (ベンチマーク結果の説明)
 * (全部は入れなくていい)
-* (パフォーマンスチューニングについては、できればいれたい)
 
 # Fluentd Community
 
