@@ -235,7 +235,7 @@
 
 = (('tag:small:Create cooperative working organization'))
 
-  * fluent-plugins-nursery
+  * ((<fluent-plugins-nursery|URL:https://github.com/fluent-plugins-nursery>))
 
 = fluent-plugins-nursery
 
