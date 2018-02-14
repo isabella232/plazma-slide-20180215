@@ -65,7 +65,7 @@
   # relative_height = 100
 
 
-= fluent-plugin-kafka との違い
+= The difference of fluent-plugin-kafka
 
   * ... TODO
 
@@ -101,7 +101,7 @@
   * (('tag:small:Write a script which parses result of pidstat and sends into Fluentd'))
     * (('tag:x-small:To measure CPU and memory usage'))
 
-= ベンチマーク環境
+= Benchmark environment
 
 (絵を入れたい)
 
@@ -142,11 +142,11 @@
 
 (('note:kafka-connect-fluentd can process about 50k events/sec'))
 
-= ベンチマークのまとめ
+= Benchmark results
 
-  * kafka-connect-fluentd は 5万 events/sec 処理できた
-  * fluent-plugin-kafka の output plugin は 1万 events/sec は処理できた
-    * 3万 events/sec は処理できなかった
+  * kafka-connect-fluentd can handle more 50,000 events/sec
+  *output plugin of fluent-plugin-kafka can handle 10,000 events/sec
+    * cannot handle 30,000 events/sec in this environment
 
 
 = Fluentd Community
