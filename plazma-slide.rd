@@ -67,7 +67,8 @@
 
 = The difference of fluent-plugin-kafka
 
-  * ... TODO
+  * kafka-connect-fluentd is implemented with Kafka connect framework on Java.
+  * fluent-plugin-kafka is implemented with Ruby.
 
 = Requirements of benchmarking
 
