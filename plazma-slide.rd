@@ -144,9 +144,9 @@
 
 = Benchmark results
 
-  * kafka-connect-fluentd can handle more 50,000 events/sec
-  * output plugin of fluent-plugin-kafka can handle 10,000 events/sec
-    * cannot handle 30,000 events/sec in this environment
+  * (('tag:small:kafka-connect-fluentd can handle more 50,000 events/sec'))
+  * (('tag:small:output plugin of fluent-plugin-kafka can handle 10,000 events/sec'))
+    * (('note:cannot handle 30,000 events/sec in this environment'))
 
 
 = Fluentd Community
