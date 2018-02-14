@@ -249,4 +249,3 @@
 = fluent-plugins-nursery
 
   * Let's maintain fluentd plugins by community!
-
