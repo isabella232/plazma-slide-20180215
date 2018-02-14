@@ -99,14 +99,13 @@
   * (('tag:small:Write a script which parses result of pidstat and sends into Fluentd'))
     * (('tag:x-small:To measure CPU and memory usage'))
 
-= Benchmark environment
+= (('tag:small:Benchmark environment'))
 
-(絵を入れたい)
+  # image
+  # src = images/structure.svg
+  # relative_height = 85
 
-* GCP
-  * n1-standard-2
-    * vCPU x 2
-    * memory 7.5GB
+(('note:GCP n1-standard-2 (vCPUx2, memory 7.5GB)'))
 
 = (('tag:small:VS. fluent-plugin-kafka\\nCPU usage'))
 
