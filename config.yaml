@@ -12,7 +12,7 @@ ustream_id:
 vimeo_id: 
 youtube_id: 
 author:
-  markup_language: :markdown
+  markup_language: :rd
   name: Hiroshi Hatake
   email: cosmo0920.wp@gmail.com
   rubygems_user: cosmo0920
