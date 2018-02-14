@@ -132,6 +132,8 @@
 
   * Using old API
     * Gap between v0.12 and v1.0 API
+  * ((*Fluent::Engine.emit*)) directly
+  * Lack of requires etc.
 
 = Maintaining Plugins
 
