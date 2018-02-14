@@ -43,10 +43,10 @@
 
 = Kafka Connect?
 
-  * Kafka Producer <-> Kafka Connector Source
-    * I'll talk about this implementation.
-  * Kafka Consumer <-> Kafka Connector Sink
-    * This implementation also exists.
+  * Kafka Producer ->\nKafka Connector Source
+    * (('tag:x-small:I'll talk about this implementation.'))
+  * Kafka Consumer ->\nKafka Connector Sink
+    * (('tag:x-small:This implementation also exists.'))
 
 = fluent-plugin-kafka との違い
 
