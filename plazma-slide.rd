@@ -46,14 +46,6 @@
   * Kafka Consumer ->\nKafka Connector Sink
     * (('tag:x-small:This implementation also exists.'))
 
-= kafka-connect-fluentd
-
-(('tag:xx-small'))
-
-  # image
-  # src = images/Fluentd-with-kafka-connect-fluentd.001.jpeg
-  # relative_height = 100
-
 = fluent-plugin-kafka
 
 (('tag:xx-small'))
@@ -62,6 +54,13 @@
   # src = images/Fluentd-to-kafka-with-fluent-plugin-kafka.002.jpeg
   # relative_height = 100
 
+= kafka-connect-fluentd
+
+(('tag:xx-small'))
+
+  # image
+  # src = images/Fluentd-with-kafka-connect-fluentd.001.jpeg
+  # relative_height = 100
 
 = Difference
 
