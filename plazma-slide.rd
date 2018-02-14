@@ -1,4 +1,4 @@
-= Cooperative works\nfor\nFluentd Community
+= Cooperative works \nfor \nFluentd Community
 
 : author
   Kenji Okimoto\n
