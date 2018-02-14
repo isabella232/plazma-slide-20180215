@@ -1,13 +1,17 @@
-= Cooperative works for Fluentd Community
+= Cooperative works\nfor\nFluentd Community
 
 : author
-  Kenji Okimoto, Hiroshi Hatake
+  Kenji Okimoto\n
+  Hiroshi Hatake
 
 : institution
   ClearCode Inc.
 
+: date
+  2018-02-15
+
 : theme
-  clear-code
+  .
 
 = Summary
 
