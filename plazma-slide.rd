@@ -48,13 +48,22 @@
   * Kafka Consumer ->\nKafka Connector Sink
     * (('tag:x-small:This implementation also exists.'))
 
-= fluent-plugin-kafka との違い
+= kafka-connect-fluentd
 
-(ここに図を入れたい fluent-plugin-kafka + kafka)
+(('tag:xx-small'))
 
-= fluent-plugin-kafka との違い
+  # image
+  # src = images/Fluentd-with-kafka-connect-fluentd.001.jpeg
+  # relative_hight = 80
 
-(ここに図を入れたい fluentd + kafka-connect + kafka)
+= fluent-plugin-kafka
+
+(('tag:xx-small'))
+
+  # image
+  # src = images/Fluentd-to-kafka-with-fluent-plugin-kafka.002.jpeg
+  # relative_hight = 80
+
 
 = fluent-plugin-kafka との違い
 
