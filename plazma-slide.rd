@@ -77,13 +77,13 @@
   * ((<fluent-benchmark-client|URL:https://github.com/okkez/fluent-benchmark-client>))
     * Implemented by Kotlin language
     * Sending log relies on ((<fluency|URL:https://github.com/komamitsu/fluency>))
-      * SSL/TLS is not supported for now.
+      * (('note:SSL/TLS is not supported for now.'))
 
 = Make benchmark tests to be reproducible
 
   * Built with Terraform + Ansible
     * Developing specific branch on ((<fluentd-benchmark|URL:https://github.com/okkez/fluentd-benchmark/tree/add-benchmark-using-gcp>))
-       * Need to tidy up implementation
+       * (('note:Need to tidy up implementation'))
 
 = Compare performance with same basis
 
