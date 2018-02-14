@@ -27,7 +27,7 @@
 
   * Use ((<influent|URL:https://github.com/okumin/influent>)) for server implementation
     * Partial SSL/TLS support
-  * Aim to replace output plugins in fluent-plugin-kafka
+  * Aim to replace output plugins in ((<fluent-plugin-kafka|URL:https://github.com/fluent/fluent-plugin-kafka>))
 
 = Kafka Connect?
 
