@@ -62,7 +62,7 @@ Kafka Connect とは、Kafkaと他のシステムを統合するためのフレ�
 = Kafka Connect?
 
 Kafka Connect は Kafka Producer/Consumer を汎用化して、データのやりとりの部分だけを実装すれば、
-他システムから Kafka にデータを流したり、Kafka から取り出したデータを他システムに流したりできます。
+他システムから Kafka にデータを流したり、Kafka から取り出したデータを他システムに流したりできるものです。
 
 Kafka Connector Source は Kafka Producer に対応しています。
 今日は、こちらについて話をします。
@@ -77,7 +77,8 @@ Kafka Connector Sink は Kafka Consumer に対応しています。
 
 = fluent-plugin-kafka
 
-fluent-plugin-kafka は図のように、あるデータソースからFluentdにデータが流れてきて、
+fluent-plugin-kafka でのデータの流れを確認します。
+fluent-plugin-kafka では図のように、あるデータソースからFluentdにデータが流れてきて、
 そのデータをruby-kafkaを使ってKafkaに流します。
 
 (('tag:xx-small'))
@@ -89,9 +90,10 @@ fluent-plugin-kafka は図のように、あるデータソースからFluentd�
 
 = kafka-connect-fluentd
 
-kafka-connect-fluentd は図のように、あるデータソースからFluentdにデータが流れてきて、
-Fluentdがそのデータを out_forward で kafka-connect-fluentd に流します。
-そして、kafka-connect-fluentdが Kafka にデータを流します。
+kafka-connect-fluentd でのデータの流れは、図のように、あるデータソース
+からFluentdにデータが流れてきて、Fluentdがそのデータを out_forward で
+kafka-connect-fluentd に流します。そして、kafka-connect-fluentdが
+Kafka にデータを流します。
 
 (('tag:xx-small'))
 
@@ -186,13 +188,13 @@ kafka-fluent-metrics-repoter で送ったデータを Fluentd でフィルタリ
 ベンチマーク環境の説明をします。
 マシンは4台あって、全て GCP の n1-standard-2 (vCPUx2, mem 7.5GB) を使用しています。
 まず、fluent-plugin-kafka の場合、左の client から、ベンチマークツールで上の Fluentd にイベントを送ります。
-Fluentdは、そのイベントを fluent-plugin-kafka の output plugin を使って Kafka に送ります。
+Fluentdは、そのイベントを fluent-plugin-kafka の output plugin を使って Kafka に送ります。(赤い線)
 FluentdのCPU使用率やメモリー使用量は、自作のスクリプトで別途 metrics サーバーに送ります。
-Kafkaのmetricsは Kafka から直接 metrics サーバーに送ります。
+Kafkaのmetricsは Kafka から直接 metrics サーバーに送ります。(緑の線)
 
-kafka-connect-fluentd の場合は、左の client から下の Kafka にイベントを送ります。
+kafka-connect-fluentd の場合は、左の client から下の Kafka にイベントを送ります。(青い線)
 kafka-connect-fluentd は Kafka と同じサーバーにいます。
-metrics はfluent-plugin-kafka の場合と同じように送ります。
+metrics はfluent-plugin-kafka の場合と同じように送ります。(緑の線)
 
 なお、Fluentd は 1.0.2 を使っています。
 
