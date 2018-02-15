@@ -151,9 +151,12 @@
 
 = Fluentd Community
 
-  * Fluentd community has...
-    * lots of plugins
-      * Over 700+ plugins
+  # image
+  # src = images/plugin-list.png
+  # relative_width = 50
+  # align = right
+
+(('tag:x-small:Fluentd community has lots of plugins'))\n(('tag:small:Over 700+ plugins'))
 
 = Fluentd Community
 
