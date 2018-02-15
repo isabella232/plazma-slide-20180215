@@ -41,9 +41,9 @@
 
 = Kafka Connect?
 
-  * Kafka Producer ->\nKafka Connector Source
+  * Kafka Connector Source ->\nKafka Producer
     * (('tag:x-small:I'll talk about this implementation.'))
-  * Kafka Consumer ->\nKafka Connector Sink
+  * Kafka Connector Sink ->\nKafka Consumer
     * (('tag:x-small:This implementation also exists.'))
 
 = fluent-plugin-kafka
