@@ -1,6 +1,6 @@
-# TODO: スライドのタイトル
+# Plazma OSS Day slide
 
-TODO: スライドの説明
+Plazma OSS Day 2018/2/15 に使用したスライドです。
 
 ## 作者向け
 
